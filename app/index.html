@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strong Random Password Generator</title>
+  <meta name="description" content="Generate a strong password here!" />
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <section class="flex justify-center">
+    <div>
+      <h1>Strong Random Password Generator</h1>
+      
+      <div 
+        id="passwordPropsContainer" 
+        class="flex flex-column margin-bottom-05"
+      ></div>
+
+      <div class="flex justify-center margin-bottom-1">
+        <button id="generateBtn" class="cursor-pointer">Generate</button>
+      </div>
+
+      <p id="errorContainer" class="color-red"></p>
+
+      <div class="flex">
+        <input 
+          id="passwordInput" 
+          class="width-100" 
+          placeholder="Your password"  
+        />
+        <button id="copyBtn" class="cursor-pointer">Copy</button>
+      </div>
+    </div>
+  </section>
+  <script src="src/script.js"></script>
+</body>
+</html>

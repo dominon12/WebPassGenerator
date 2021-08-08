@@ -1,0 +1,43 @@
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.color-red {
+    color: red;
+}
+
+.margin-bottom-1 {
+    margin-bottom: 1rem;
+}
+
+.margin-bottom-05 {
+    margin-bottom: 0.5rem;
+}
+
+.margin-right-05 {
+    margin-right: 0.5rem;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
