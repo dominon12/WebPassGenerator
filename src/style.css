@@ -1,43 +1,117 @@
-.flex {
-    display: flex;
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+
+:root {
+  --background-color: #232946;
+  --button-text-color: #232946;
+  --headline-color: #fffffe;
+  --secondary-color: #b8c1ec;
+  --color-details: #eebbc3;
+  --default-font-size: 1.2rem;
+
+  --content-max-width: 700px;
 }
 
-.align-center {
-    align-items: center;
+body {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  font-size: var(--default-font-size);
+  font-family: "Rubik", sans-serif;
 }
 
-.justify-center {
-    justify-content: center;
+.title {
+  color: var(--headline-color);
+  margin-top: 0;
+  text-align: center;
+  font-size: 4rem;
 }
 
-.flex-column {
-    flex-direction: column;
+.content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0.5rem;
 }
 
-.color-red {
-    color: red;
+.password-props {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 
-.margin-bottom-1 {
-    margin-bottom: 1rem;
+.password-prop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
 
-.margin-bottom-05 {
-    margin-bottom: 0.5rem;
+.password-prop__label {
+  margin: 0;
 }
 
-.margin-right-05 {
-    margin-right: 0.5rem;
+.error-container {
+  color: red;
 }
 
-.no-margin {
-    margin: 0;
+.select {
+  padding: 0.4rem;
+  margin-right: 0.5rem;
 }
 
-.width-100 {
-    width: 100%;
+.input {
+  padding: 0.8rem;
+  margin-right: 0.5rem;
+  width: 100%;
 }
 
-.cursor-pointer {
-    cursor: pointer;
+.checkbox {
+  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.button {
+  background-color: var(--color-details);
+  color: var(--button-text-color);
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+}
+
+.button,
+.input,
+.select,
+.checkbox {
+  font-size: var(--default-font-size);
+  border: 1px solid var(--background-color);
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.result-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 345px) {
+  .title {
+    font-size: 1.4rem;
+  }
 }

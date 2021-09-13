@@ -11,7 +11,7 @@ const copyBtn = document.getElementById("copyBtn");
 function checkboxCreator(props) {
   const checkboxElement = document.createElement("input");
   checkboxElement.id = props.id;
-  checkboxElement.classList = "margin-right-05";
+  checkboxElement.classList = "checkbox";
   checkboxElement.type = "checkbox";
   checkboxElement.checked = props.default;
 
@@ -25,7 +25,7 @@ function checkboxCreator(props) {
 function selectCreator(props) {
   const selectElement = document.createElement("select");
   selectElement.id = props.id;
-  selectElement.classList = "margin-right-05";
+  selectElement.classList = "select";
 
   Object.keys(props.values).map((rangeName) => {
     const optgroupElement = document.createElement("optgroup");
@@ -47,13 +47,13 @@ function selectCreator(props) {
 
 function createPropContainer() {
   const propContainer = document.createElement("span");
-  propContainer.classList = "flex align-center margin-bottom-05 cursor-pointer";
+  propContainer.classList = "password-prop";
   return propContainer;
 }
 
 function createPropLabel(prop) {
   const labelElement = document.createElement("p");
-  labelElement.classList = "no-margin";
+  labelElement.classList = "password-prop__label";
   labelElement.innerHTML = prop.label;
   prop.labelElement = labelElement;
   return labelElement;
