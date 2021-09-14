@@ -36,10 +36,10 @@ function selectCreator(props) {
       if (props.default === optionValue) optionElement.selected = true;
       optionElement.value = optionValue;
       optionElement.innerHTML = optionValue;
-      optgroupElement.appendChild(optionElement);
+      optgroupElement.append(optionElement);
     });
 
-    selectElement.appendChild(optgroupElement);
+    selectElement.append(optgroupElement);
   });
 
   return selectElement;
@@ -182,9 +182,9 @@ function addPasswordPropsSelectors() {
     const labelElement = createPropLabel(prop);
     const createdElement = prop.create(prop);
     // append created elements to HTML
-    propContainer.appendChild(createdElement);
-    propContainer.appendChild(labelElement);
-    passwordPropsContainer.appendChild(propContainer);
+    propContainer.append(createdElement);
+    propContainer.append(labelElement);
+    passwordPropsContainer.append(propContainer);
   });
 }
 
