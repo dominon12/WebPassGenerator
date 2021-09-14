@@ -8,41 +8,68 @@ const passwordInput = document.getElementById("passwordInput");
 const generateBtn = document.getElementById("generateBtn");
 const copyBtn = document.getElementById("copyBtn");
 
-function checkboxCreator(props) {
-  const checkboxElement = document.createElement("input");
-  checkboxElement.id = props.id;
-  checkboxElement.classList = "checkbox";
-  checkboxElement.type = "checkbox";
-  checkboxElement.checked = props.default;
+class AbstractInputElement {
+  constructor(id, type, label, defaultValue) {
+    this.id = id;
+    this.type = type;
+    this.label = label;
+    this.defaultValue = defaultValue;
+  }
 
-  props.labelElement.addEventListener("click", (e) => {
-    checkboxElement.checked = !checkboxElement.checked;
-  });
-
-  return checkboxElement;
+  create() {
+    throw new Error('Method "create" has not been implemented');
+  }
 }
 
-function selectCreator(props) {
-  const selectElement = document.createElement("select");
-  selectElement.id = props.id;
-  selectElement.classList = "select";
+class SelectElement extends AbstractInputElement {
+  constructor({ id, type, label, defaultValue, values }) {
+    super(id, type, label, defaultValue);
+    this.values = values;
+  }
 
-  Object.keys(props.values).map((rangeName) => {
-    const optgroupElement = document.createElement("optgroup");
-    optgroupElement.label = rangeName;
+  create() {
+    const selectElement = document.createElement("select");
+    selectElement.id = this.id;
+    selectElement.classList = "select";
 
-    props.values[rangeName].map((optionValue) => {
-      const optionElement = document.createElement("option");
-      if (props.default === optionValue) optionElement.selected = true;
-      optionElement.value = optionValue;
-      optionElement.innerHTML = optionValue;
-      optgroupElement.append(optionElement);
+    Object.keys(this.values).map((rangeName) => {
+      const optgroupElement = document.createElement("optgroup");
+      optgroupElement.label = rangeName;
+
+      this.values[rangeName].map((optionValue) => {
+        const optionElement = document.createElement("option");
+        if (this.defaultValue === optionValue) optionElement.selected = true;
+        optionElement.value = optionValue;
+        optionElement.innerHTML = optionValue;
+        optgroupElement.append(optionElement);
+      });
+
+      selectElement.append(optgroupElement);
     });
 
-    selectElement.append(optgroupElement);
-  });
+    return selectElement;
+  }
+}
 
-  return selectElement;
+class CheckboxElement extends AbstractInputElement {
+  constructor({ id, type, label, defaultValue, charCodes }) {
+    super(id, type, label, defaultValue);
+    this.charCodes = charCodes;
+  }
+
+  create() {
+    const checkboxElement = document.createElement("input");
+    checkboxElement.id = this.id;
+    checkboxElement.classList = "checkbox";
+    checkboxElement.type = "checkbox";
+    checkboxElement.checked = this.defaultValue;
+
+    this.labelElement.addEventListener("click", (e) => {
+      checkboxElement.checked = !checkboxElement.checked;
+    });
+
+    return checkboxElement;
+  }
 }
 
 function createPropContainer() {
@@ -69,7 +96,7 @@ function randomChoice(choices) {
 }
 
 const PASSWORD_PROPS = [
-  {
+  new SelectElement({
     id: "passwordLength",
     type: 1,
     label: "Length",
@@ -78,41 +105,36 @@ const PASSWORD_PROPS = [
       Strong: [...range(16, 128)],
       Unbelievable: [256, 512, 1024, 2048],
     },
-    default: 16,
-    create: selectCreator,
-  },
-  {
+    defaultValue: 16,
+  }),
+  new CheckboxElement({
     id: "includeSymbols",
     type: 0,
     label: "Symbols",
     charCodes: [...range(33, 47), ...range(58, 64)],
-    default: true,
-    create: checkboxCreator,
-  },
-  {
+    defaultValue: true,
+  }),
+  new CheckboxElement({
     id: "includeNumbers",
     type: 0,
     label: "Numbers",
     charCodes: [...range(48, 57)],
-    default: true,
-    create: checkboxCreator,
-  },
-  {
+    defaultValue: true,
+  }),
+  new CheckboxElement({
     id: "includeLowercaseCharacters",
     type: 0,
     label: "Lowercase Characters",
     charCodes: [...range(97, 122)],
-    default: true,
-    create: checkboxCreator,
-  },
-  {
+    defaultValue: true,
+  }),
+  new CheckboxElement({
     id: "includeUppercaseCharacters",
     type: 0,
     label: "Uppercase Characters",
     charCodes: [...range(65, 90)],
-    default: true,
-    create: checkboxCreator,
-  },
+    defaultValue: true,
+  }),
 ];
 
 function extractPasswordPropsFromHTML() {
@@ -180,7 +202,7 @@ function addPasswordPropsSelectors() {
     // create elements
     const propContainer = createPropContainer();
     const labelElement = createPropLabel(prop);
-    const createdElement = prop.create(prop);
+    const createdElement = prop.create();
     // append created elements to HTML
     propContainer.append(createdElement);
     propContainer.append(labelElement);
