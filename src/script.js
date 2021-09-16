@@ -204,8 +204,8 @@ function addPasswordPropsSelectors() {
     const labelElement = createPropLabel(prop);
     const createdElement = prop.create();
     // append created elements to HTML
-    propContainer.append(createdElement);
     propContainer.append(labelElement);
+    propContainer.append(createdElement);
     passwordPropsContainer.append(propContainer);
   });
 }

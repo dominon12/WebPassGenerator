@@ -41,8 +41,8 @@ body {
 .password-prop {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 1rem;
-  cursor: pointer;
 }
 
 .password-prop__label {
@@ -55,7 +55,6 @@ body {
 
 .select {
   padding: 0.4rem;
-  margin-right: 0.5rem;
 }
 
 .input {
@@ -65,7 +64,6 @@ body {
 }
 
 .checkbox {
-  margin-right: 0.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
